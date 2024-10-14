@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Long-LRM</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Long-LRM: Long-sequence Large Reconstruction Model for Wide-coverage Gaussian Splats</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+		Authors...
+                <br><br>
+                High-quality large-scene 3D Gaussian reconstruction in <b>1.3 seconds</b>. 
+                  </span>
+                  </div>
+
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We propose Long-LRM, a generalizable 3D Gaussian reconstruction model that is capable of reconstructing a large scene from 
+            a long sequence of input images. Specifically, our model can process 32 source images at 960x540 resolution within 
+            only 1.3 seconds on a single A100 80G GPU. Our architecture features a mixture of the recent Mamba2 blocks and the 
+            classical transformer blocks which allowed many more tokens to be processed than prior work, enhanced by efficient 
+            token merging and Gaussian pruning steps that balance between quality and efficiency. Unlike previous feed-forward 
+            models that are limited to processing 1~4 input images and can only reconstruct a small portion of a large scene, 
+            Long-LRM reconstructs the entire scene in a single feed-forward step. On large-scale scene datasets such as DL3DV-140 
+            and Tanks and Temples, our method achieves performance comparable to optimization-based approaches while being two 
+            orders of magnitude more efficient.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/fig2.png" width="960" height="425">
+      Long-LRM takes up to 32 input images along with their Plücker ray embeddings as model input, 
+      which are then patchified, linearly transformed, and concatenated into token sequences. 
+      These tokens are processed through an optional token merging module, followed by a sequence 
+      comprising Mamba2 blocks (×7) and a Transformer block (×1). This entire processing structure is 
+      repeated three times (×3) to ensure effective handling of the long-sequence inputs and comprehensive 
+      feature extraction. After processing, the tokens are unpatchified, and Gaussian pruning is applied 
+      to generate the final 3D GS representation. The bottom section of the figure illustrates the 
+      resulting novel view synthesis and wide-coverage Gaussian reconstruction, demonstrating Long-LRM's 
+      capability to handle extensive view coverage and produce high-quality, photorealistic reconstructions.
+      <br><br>
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_27.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Video rendered from our wide-coverage Gaussians, reconstructed with 32 images in 1.3 seconds.<br>
+        <a
+          href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_27.ply&is_object=false&w2c=0.7358684539794922, -0.24194690585136414, 0.6324233412742615, -0.3992058038711548, 0.11553019285202026, 0.9651509523391724, 0.23481148481369019, -0.021701164543628693, -0.6671959757804871, -0.0997263640165329, 0.7381762862205505, 0.5625361800193787,0,0,0,1">Open
+          interactive viewer
+        </a>
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+
+
+
+
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-centered">
+      <!-- Paper video. -->
+      <h2 class="title is-3">More reconstruction examples</h2>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_33.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_33.ply&is_object=false&w2c=0.7969034314155579, 0.050342071801424026, -0.6020054817199707, 0.4530174434185028, -0.0345848985016346, 0.9986891746520996, 0.037732649594545364, 0.06133970618247986, 0.6031159162521362, -0.009248979389667511, 0.7975999712944031, 0.38014093041419983,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_35.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_35.ply&is_object=false&w2c=0.7239959836006165,0.4612096846103668,-0.5129478573799133,0.11725517362356186,-0.1189594715833664,0.8159524202346802,0.5657475590705872,-0.0984003096818924,0.6794692873954773,-0.34857892990112305,0.6456114649772644,0.9246791005134583,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_58.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_58.ply&is_object=false&w2c=0.6985234618186951,-0.03895095735788345,-0.7145262360572815,0.6421560645103455,-0.035734329372644424,0.995373010635376,-0.08919476717710495,0.026711609214544296,0.7146943211555481,0.08783776313066483,0.6938995718955994,0.34462013840675354,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_60.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_60.ply&is_object=false&w2c=0.5290219783782959,-0.5378419160842896,0.656400740146637,-0.04237963631749153,0.0733262300491333,0.7995813488960266,0.596064567565918,0.03440643846988678,-0.8454342484474182,-0.2671998143196106,0.46243399381637573,0.8296985626220703,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_77.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_77.ply&is_object=false&w2c=-0.2604891359806061,0.3858509659767151,-0.8850222826004028,0.4183049499988556,-0.18699975311756134,0.8791466355323792,0.4383290410041809,-0.07694584131240845,0.94719398021698,0.27967891097068787,-0.15685409307479858,0.8682834506034851,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_84.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_84.ply&is_object=false&w2c=0.10541397333145142,0.06656627357006073,-0.9921979904174805,-0.16571184992790222,-0.160675048828125,0.985787034034729,0.04906558245420456,-0.01808033511042595,0.981361985206604,0.15424925088882446,0.11461127549409866,0.42243337631225586,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+
+    
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_29.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_29.ply&is_object=false&w2c=0.7679237127304077, 0.23454706370830536, -0.5960544347763062, 0.34402740001678467, -0.10916305333375931, 0.9648563265800476, 0.23903071880340576, -0.016566019505262375, 0.6311708092689514, -0.11849024146795273, 0.7665399312973022, 0.5245945453643799,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_48.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_48.ply&is_object=false&w2c=0.9130572080612183, -0.1221081092953682, -0.38912227749824524, 0.4850134253501892, 0.16989266872406006, 0.9812782406806946, 0.09071618318557739, 0.1943470984697342, 0.370760053396225, -0.14893808960914612, 0.9167084693908691, 0.3055366277694702,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+    
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_63.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_63.ply&is_object=false&w2c=0.9722356796264648, 0.22987103462219238, -0.043784648180007935, -0.2127688080072403, -0.044535040855407715, 0.36545655131340027, 0.9297624230384827, -0.02301597036421299, 0.2297268509864807, -0.9019982218742371, 0.36554720997810364, 0.679755449295044,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_80.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_80.ply&is_object=false&w2c=0.81403648853302, 0.11967639625072479, 0.5683503150939941, -0.5609179139137268, -0.02740095928311348, 0.9853650331497192, -0.1682405173778534, 0.030616004019975662, -0.5801669359207153, 0.12138058990240097, 0.805402398109436, 0.4497006833553314,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+    
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_101.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_101.ply&is_object=false&w2c=0.9682496786117554, -0.0029959226958453655, -0.2499670386314392, 0.5916620492935181, 0.012112544849514961, 0.9993159770965576, 0.03494098410010338, 0.009838481433689594, 0.24969136714935303, -0.036859337240457535, 0.9676236510276794, 0.2287878692150116,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_105.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_105.ply&is_object=false&w2c=0.16741560399532318, 0.27759435772895813, -0.9459986090660095, 0.45142126083374023, -0.14618045091629028, 0.9559242725372314, 0.25463709235191345, -0.04544597119092941, 0.9749888777732849, 0.09565627574920654, 0.2006155103445053, 0.6670311093330383,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+    
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_106.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          <a
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_106.ply&is_object=false&w2c=0.997383177280426, 0.016486575827002525, 0.07039190083742142, 0.6375018358230591, -0.016034986823797226, 0.9998470544815063, -0.006975643336772919, 0.014523642137646675, -0.07049614191055298, 0.005828655790537596, 0.9974950551986694, 0.173281729221344,0,0,0,1">Open
+            interactive viewer
+          </a>
+        </h2> 
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_13.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_13.ply&is_object=false&w2c=0.9962202310562134,-0.05060601979494095,-0.07059924304485321,0.05582988262176514,0.061720117926597595,0.9842972755432129,0.16537660360336304,-0.12063107639551163,0.06112159416079521,-0.16910892724990845,0.9837003350257874,0.4169328808784485,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_14.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_14.ply&is_object=false&w2c=0.8285039067268372,-0.28217965364456177,-0.4836898446083069,0.3417777121067047,0.23600642383098602,0.9592509865760803,-0.15536576509475708,0.08962512761354446,0.5078209638595581,0.014567234553396702,0.8613393902778625,0.3418840169906616,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_17.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_17.ply&is_object=false&w2c=0.9122817516326904,0.05615735054016113,-0.4056948125362396,0.5163587927818298,-0.09716176241636276,0.9919524788856506,-0.0811779648065567,-0.02149072103202343,0.3978712558746338,0.11347520351409912,0.9103965163230896,0.3521221876144409,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_18.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_18.ply&is_object=false&w2c=0.1658591330051422,0.0775371789932251,0.9830965399742126,-0.43094101548194885,-0.09557629376649857,0.9934749603271484,-0.06223096698522568,0.1033748909831047,-0.9815070033073425,-0.08363914489746094,0.17218759655952454,0.639274537563324,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_37.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_37.ply&is_object=false&w2c=0.8865923881530762,0.46217480301856995,-0.01866285689175129,-0.0928460955619812,-0.105086550116539,0.24055249989032745,0.9649307727813721,-0.06344103813171387,0.45045608282089233,-0.8535390496253967,0.2618403732776642,0.7418224811553955,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_44.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_44.ply&is_object=false&w2c=0.0898536965250969,-0.34391412138938904,-0.9346921443939209,0.0015784897841513157,-0.08605597168207169,0.9322974681854248,-0.35130575299263,-0.008553425781428814,0.9922301173210144,0.11200195550918579,0.0541745126247406,0.6380223035812378,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_100.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_100.ply&is_object=false&w2c=0.4536723792552948,0.16081973910331726,0.8765377402305603,-0.5476216673851013,-0.14259003102779388,0.9840098023414612,-0.10673703998327255,0.13198910653591156,-0.8796871304512024,-0.07656190544366837,0.46934932470321655,0.512079119682312,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_121.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_121.ply&is_object=false&w2c=0.7878368496894836,0.3686569929122925,0.49336111545562744,-0.6081096529960632,-0.3524613082408905,0.9267953634262085,-0.12969732284545898,0.2643652856349945,-0.5050586462020874,-0.07171037048101425,0.8601008057594299,0.27997735142707825,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_125.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_125.ply&is_object=false&w2c=0.8646215796470642,-0.12179720401763916,0.4874371290206909,-0.6809754967689514,0.2728654444217682,0.9284570217132568,-0.2520158588886261,-0.18546587228775024,-0.4218696057796478,0.35090309381484985,0.8359982371330261,0.22597847878932953,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_130.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_130.ply&is_object=false&w2c=0.8733397126197815,0.055972229689359665,-0.48388510942459106,-0.003423636546358466,-0.01251277793198824,0.9956263899803162,0.09258297085762024,0.03279834985733032,0.4869508147239685,-0.07480163872241974,0.870220422744751,0.6298299431800842,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_132.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_132.ply&is_object=false&w2c=0.7499571442604065,0.00803746934980154,-0.6614375710487366,0.6503478288650513,0.04744437336921692,0.9966973066329956,0.06590519100427628,0.07605225592851639,0.6597827672958374,-0.08080756664276123,0.747098982334137,0.35571351647377014,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_137.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_137.ply&is_object=false&w2c=0.9247874617576599,-0.01200826745480299,0.380294531583786,-0.5447327494621277,0.03679237887263298,0.9976401925086975,-0.057968754321336746,0.029947666451334953,-0.37870100140571594,0.06760071963071823,0.9230469465255737,0.28942981362342834,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+        
+        <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_139.mp4"
+        type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+        <a
+        href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_139.ply&is_object=false&w2c=0.7149951457977295,0.6825153827667236,0.15150800347328186,-0.024870911613106728,-0.16075105965137482,0.3713955581188202,-0.9144530892372131,0.1408051699399948,-0.6803976893424988,0.6294744610786438,0.3752610683441162,0.7564027905464172,0,0,0,1">Open
+        interactive viewer
+        </a>
+        </h2> 
+        </div>
+
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
