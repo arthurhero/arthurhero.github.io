@@ -60,8 +60,8 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block"><a href="https://chenziwe.com/" target="_blank">Ziwen Chen</a><sup>1</sup>,</span>
-              <span class="author-block"><a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>2</sup></span>
-              <class="author-block"><a href="https://web.engr.oregonstate.edu/~lif/" target="_blank">Fuxin Li</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>2</sup>,</span>
+              <class="author-block"><a href="https://web.engr.oregonstate.edu/~lif/" target="_blank">Fuxin Li</a><sup>1</sup></span>
             </div>
             <div class="is-size-5 publication-authors">
               <span class="eql-cntrb"><br><sup>1</sup>Oregon State University</span>
@@ -121,25 +121,33 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/fig1_crop.jpg" width="960" height="425">
+      <img src="static/images/fig1_crop.jpg" style="margin: 30px;" width="960" height="425">
       Workflow of PointRecon. We begin with monocular depth prediction for the first image, 
       lifting 2D points into 3D space to form the initial point cloud. For each subsequent image, 
       we perform feature matching between the 2D image features and the 3D point cloud features to 
       update the features and positions of the point cloud and to predict depth for the 2D image. 
       Finally, the new points are merged with the existing point cloud. 
+      <br><br>
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/pointrecon_stuff/resolve/main/videos/scene0708_00.mp4"
+        type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
 
 <!-- Recon video-->
 <section class="section is-small is-light" id="recon">
-  <div class="container is-max-desktop content">
+  <div class="hero-body">
+  <div class="container is-centered is-max-desktop content" style="text-align:center;">
     <h2 class="title">Scannet Test Split Reconstruction Videos</h2>
     <p>ul: input image, ur: rendered depth<br>
        ll: first-person view reconstruction, lr: birdeye-view reconstruction</p>
 
        <div id="DivContent"></div>
 
+  </div>
   </div>
 </section>
 <!-- End recon video -->
