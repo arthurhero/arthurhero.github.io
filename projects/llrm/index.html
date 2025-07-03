@@ -55,7 +55,8 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
 		<span>
-                High-quality large-scene 3D Gaussian reconstruction in <b>1.3 seconds</b>. 
+      High-resolution, wide-coverage, scene-level 3D Gaussian reconstruction in <b>1 second</b>.<br>
+      Accepted by ICCV 2025.
                   </span>
                 <br><br>
               <span class="author-block"><a href="https://chenziwe.com/" target="_blank">Ziwen Chen</a><sup>1</sup>,</span>
@@ -65,11 +66,12 @@
               <span class="author-block"><a href="https://luanfujun.com/" target="_blank">Fujun Luan</a><sup>2</sup>,</span>
               <span class="author-block"><a href="https://yiconghong.me/" target="_blank">Yicong Hong</a><sup>2</sup>,</span>
               <span class="author-block"><a href="https://web.engr.oregonstate.edu/~lif/" target="_blank">Fuxin Li</a><sup>1</sup>,</span>
-              <span class="author-block"><a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>2</sup></span>
+              <span class="author-block"><a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>3</sup></span>
                   </div>
                   <div class="is-size-5 publication-authors">
                     <span class="eql-cntrb"><br><sup>1</sup>Oregon State University</span>
                     <span class="eql-cntrb"><sup>2</sup>Adobe Research</span>
+                    <span class="eql-cntrb"><sup>3</sup>Hillbot</span>
                   </div>
 
               <div class="column has-text-centered">
@@ -113,15 +115,18 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We propose Long-LRM, a generalizable 3D Gaussian reconstruction model that is capable of reconstructing a large scene from 
-            a long sequence of input images. Specifically, our model can process 32 source images at 960x540 resolution within 
-            only 1.3 seconds on a single A100 80G GPU. Our architecture features a mixture of the recent Mamba2 blocks and the 
-            classical transformer blocks which allowed many more tokens to be processed than prior work, enhanced by efficient 
-            token merging and Gaussian pruning steps that balance between quality and efficiency. Unlike previous feed-forward 
-            models that are limited to processing 1~4 input images and can only reconstruct a small portion of a large scene, 
-            Long-LRM reconstructs the entire scene in a single feed-forward step. On large-scale scene datasets such as DL3DV-140 
-            and Tanks and Temples, our method achieves performance comparable to optimization-based approaches while being two 
-            orders of magnitude more efficient.
+            We propose Long-LRM, a feed-forward 3D Gaussian reconstruction model for instant, high-resolution, 
+            360° wide-coverage, scene-level reconstruction. Specifically, it takes in 32 input images at a 
+            resolution of 960×540 and produces the Gaussian reconstruction in just 1 second on a single A100 GPU. 
+            To handle the long sequence of <b>250K</b> tokens brought by the large input size, Long-LRM features a mixture 
+            of the recent Mamba2 blocks and the classical transformer blocks, enhanced by a light-weight token merging
+             module and Gaussian pruning steps that balance between quality and efficiency. We evaluate Long-LRM on 
+             the large-scale DL3DV benchmark and Tanks&Temples, demonstrating reconstruction quality comparable to 
+             the optimization-based methods while achieving an <b>800×</b> speedup w.r.t. the optimization-based approaches 
+             and an input size at least <b>60×</b> larger than the previous feed-forward approaches. 
+             We conduct extensive ablation studies on our model design choices for both rendering quality 
+             and computation efficiency. We also explore Long-LRM's compatibility with other Gaussian variants such as 2D GS, 
+             which enhances Long-LRM's ability in geometry reconstruction.
           </p>
         </div>
       </div>
@@ -131,30 +136,26 @@
 <!-- End paper abstract -->
 
 
+
 <!-- Teaser video-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <img src="static/images/fig2.png" width="960" height="425">
-      Long-LRM takes up to 32 input images along with their Plücker ray embeddings as model input, 
-      which are then patchified, linearly transformed, and concatenated into token sequences. 
-      These tokens are processed through an optional token merging module, followed by a sequence 
-      comprising Mamba2 blocks (×7) and a Transformer block (×1). This entire processing structure is 
-      repeated three times (×3) to ensure effective handling of the long-sequence inputs and comprehensive 
-      feature extraction. After processing, the tokens are unpatchified, and Gaussian pruning is applied 
-      to generate the final 3D GS representation. The bottom section of the figure illustrates the 
-      resulting novel view synthesis and wide-coverage Gaussian reconstruction, demonstrating Long-LRM's 
-      capability to handle extensive view coverage and produce high-quality, photorealistic reconstructions.
+      Long-LRM takes 32 input images along with their Plücker ray embeddings as model input, which are then patchified 
+      into a token sequence. These tokens are processed through a series of  Mamba2 and transformer blocks ({7M1T}×3).
+      Fully processed, the tokens are decoded into per-pixel Gaussian parameters, followed by a Gaussian pruning step. 
+      The bottom section illustrates the resulting wide-coverage Gaussian reconstruction and photo-realistic novel view 
+      synthesis.
       <br><br>
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
-        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_27.mp4"
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/teaser2.mp4"
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        Video rendered from our wide-coverage Gaussians, reconstructed with 32 images in 1.3 seconds.<br>
         <a
-          href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_27.ply&is_object=false&w2c=0.7358684539794922, -0.24194690585136414, 0.6324233412742615, -0.3992058038711548, 0.11553019285202026, 0.9651509523391724, 0.23481148481369019, -0.021701164543628693, -0.6671959757804871, -0.0997263640165329, 0.7381762862205505, 0.5625361800193787,0,0,0,1">Open
+          href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_33.ply&is_object=false&w2c=0.7969034314155579, 0.050342071801424026, -0.6020054817199707, 0.4530174434185028, -0.0345848985016346, 0.9986891746520996, 0.037732649594545364, 0.06133970618247986, 0.6031159162521362, -0.009248979389667511, 0.7975999712944031, 0.38014093041419983,0,0,0,1">Open
           interactive viewer
         </a>
       </h2>
@@ -168,22 +169,23 @@
 
 
 
+
 <!-- Youtube video -->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container is-centered" style="text-align:center;">
       <!-- Paper video. -->
-      <h2 class="title is-3">More reconstruction examples</h2>
+      <h2 class="title is-3">More reconstruction examples on DL3DV-140</h2>
 
       <div style="display:inline-block;margin: 30px;">
         <video controls muted loop width="480" height="270">
           <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_33.mp4"
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/dl3dv_27.mp4"
           type="video/mp4">
         </video>
         <h2 style="text-align: center;">
           <a
-            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_33.ply&is_object=false&w2c=0.7969034314155579, 0.050342071801424026, -0.6020054817199707, 0.4530174434185028, -0.0345848985016346, 0.9986891746520996, 0.037732649594545364, 0.06133970618247986, 0.6031159162521362, -0.009248979389667511, 0.7975999712944031, 0.38014093041419983,0,0,0,1">Open
+            href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_27.ply&is_object=false&w2c=0.7358684539794922, -0.24194690585136414, 0.6324233412742615, -0.3992058038711548, 0.11553019285202026, 0.9651509523391724, 0.23481148481369019, -0.021701164543628693, -0.6671959757804871, -0.0997263640165329, 0.7381762862205505, 0.5625361800193787,0,0,0,1">Open
             interactive viewer
           </a>
         </h2> 
@@ -546,15 +548,94 @@
 </section>
 <!-- End youtube video -->
 
+
+<!-- Scannet video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-centered" style="text-align:center;">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Zero-shot reconstruction examples on ScanNetv2</h2>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_1.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_3.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_4.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_5.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_13.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_31.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_34.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/scannet_videos/color_depth_36.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- End Scannet video -->
+
+
+
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{ziwen2024llrm,
+      <pre><code>@inproceedings{ziwen2025llrm,
   title={Long-LRM: Long-sequence Large Reconstruction Model for Wide-coverage Gaussian Splats},
   author={Ziwen, Chen and Tan, Hao and Zhang, Kai and Bi, Sai and Luan, Fujun and Hong, Yicong and Fuxin, Li and Xu, Zexiang},
-  journal={arXiv preprint 2410.12781},
-  year={2024}
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  year={2025}
 }</code></pre>
     </div>
 </section>
