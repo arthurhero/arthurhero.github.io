@@ -54,10 +54,8 @@
             <h1 class="title is-1 publication-title">Long-LRM: Long-sequence Large Reconstruction Model for Wide-coverage Gaussian Splats</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
-		<span>
-      High-resolution, wide-coverage, scene-level 3D Gaussian reconstruction in <b>1 second</b>.<br>
-      Accepted by ICCV 2025.
-                  </span>
+		<span>High-resolution, wide-coverage, scene-level 3D Gaussian reconstruction in <b>1 second</b>.</span>
+    <span style="font-size:10px">Accepted by ICCV 2025.</span>
                 <br><br>
               <span class="author-block"><a href="https://chenziwe.com/" target="_blank">Ziwen Chen</a><sup>1</sup>,</span>
               <span class="author-block"><a href="https://research.adobe.com/person/hao-tan/" target="_blank">Hao Tan</a><sup>2</sup>,</span>
@@ -141,13 +139,6 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/fig2.png" width="960" height="425">
-      Long-LRM takes 32 input images along with their Plücker ray embeddings as model input, which are then patchified 
-      into a token sequence. These tokens are processed through a series of  Mamba2 and transformer blocks ({7M1T}×3).
-      Fully processed, the tokens are decoded into per-pixel Gaussian parameters, followed by a Gaussian pruning step. 
-      The bottom section illustrates the resulting wide-coverage Gaussian reconstruction and photo-realistic novel view 
-      synthesis.
-      <br><br>
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
         <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/teaser2.mp4"
@@ -159,6 +150,13 @@
           interactive viewer
         </a>
       </h2>
+      <br><br>
+      <img src="static/images/fig2.png" width="960" height="425">
+      Long-LRM takes 32 input images along with their Plücker ray embeddings as model input, which are then patchified 
+      into a token sequence. These tokens are processed through a series of  Mamba2 and transformer blocks ({7M1T}×3).
+      Fully processed, the tokens are decoded into per-pixel Gaussian parameters, followed by a Gaussian pruning step. 
+      The bottom section illustrates the resulting wide-coverage Gaussian reconstruction and photo-realistic novel view 
+      synthesis.
     </div>
   </div>
 </section>
