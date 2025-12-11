@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction">
+  <meta property="og:title" content="Long-LRM++ Project Page"/>
+  <meta property="og:description" content="Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction"/>
+  <meta property="og:url" content="https://arthurhero.github.io/projects/llrm2/index.html"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/fig2.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="Long-LRM++">
+  <meta name="twitter:description" content="Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/fig2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="3D Reconstruction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Long-LRM++</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Long-LRM++: Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+		<!-- <span>High-resolution, wide-coverage, scene-level 3D Gaussian reconstruction in <b>1 second</b>.</span><br> -->
+    <!-- <span style="font-size:16px">Accepted by ICCV 2025.</span> -->
+                <br><br>
+              <span class="author-block"><a href="https://chenziwe.com/" target="_blank">Ziwen Chen</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://research.adobe.com/person/hao-tan/" target="_blank">Hao Tan</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=KvXvmawAAAAJ&hl=en" target="_blank">Peng Wang</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>3</sup>,</span>
+              <span class="author-block"><a href="https://web.engr.oregonstate.edu/~lif/" target="_blank">Fuxin Li</a><sup>4</sup></span>
+                  </div>
+                  <div class="is-size-5 publication-authors">
+                    <span class="eql-cntrb"><sup>1</sup>Adobe Research</span>
+                    <span class="eql-cntrb"><sup>2</sup>Tripo AI</span>
+                    <span class="eql-cntrb"><sup>3</sup>Hillbot</span>
+                    <span class="eql-cntrb"><br><sup>4</sup>Oregon State University</span>
+                  </div>
+
+              <div class="column has-text-centered">
+                    <div class="publication-links">
+                    <!-- Arxiv PDF link -->
+                    <span class="link-block">
+                        <a href="" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+                    <span class="link-block">
+                      <a href="" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code (Coming soon)</span>
+                    </a>
+                  </span>
+              </div>
+              </div>
+
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in generalizable Gaussian splatting (GS) have enabled feed-forward reconstruction of scenes 
+            from tens of input views. Long-LRM notably scales this paradigm to 32 input images at 960×540 resolution, 
+            achieving 360° scene-level reconstruction in a single forward pass. However, directly predicting millions of 
+            Gaussian parameters at once remains highly error-sensitive: small inaccuracies in positions or other 
+            attributes lead to noticeable blurring, particularly in fine structures such as text. 
+            In parallel, implicit representation methods such as LVSM and LaCT have demonstrated significantly higher 
+            rendering fidelity by compressing scene information into model weights rather than explicit Gaussians, 
+            and decoding RGB frames using the full transformer or TTT backbone. 
+            However, this computationally intensive decompression process for every rendered frame makes real-time 
+            rendering infeasible.
+            These observations raise key questions: Is the deep, sequential "decompression" process necessary? 
+            Can we retain the benefits of implicit representations while enabling real-time performance?
+            We address these questions with Long-LRM++, a model that adopts a semi-explicit scene representation 
+            combined with a lightweight decoder. Long-LRM++ matches the rendering quality of LaCT on DL3DV while 
+            achieving real-time 14 FPS rendering on an A100 GPU, overcoming the speed limitations of prior 
+            implicit methods. Our design also scales to 64 input views at the 950×540 resolution, demonstrating 
+            strong generalization to increased input lengths. 
+            Additionally, Long-LRM++ delivers superior novel-view depth prediction on ScanNetv2 compared to direct 
+            depth rendering from Gaussians. Extensive ablation studies validate the effectiveness of each component 
+            in the proposed framework.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <br><br>
+      <video poster="" id="tree" autoplay muted loop height="100%">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/teaser2.mp4"
+        type="video/mp4">
+      </video>
+      <!-- <h3 class="subtitle has-text-centered">
+        <a
+          href="viewer/index.html?url=https://huggingface.co/arthurhero/llrm_stuff/resolve/main/plys/dl3dv_33.ply&is_object=false&w2c=0.7969034314155579, 0.050342071801424026, -0.6020054817199707, 0.4530174434185028, -0.0345848985016346, 0.9986891746520996, 0.037732649594545364, 0.06133970618247986, 0.6031159162521362, -0.009248979389667511, 0.7975999712944031, 0.38014093041419983,0,0,0,1">Open
+          interactive viewer
+        </a>
+      </h3> -->
+      <br><br><br><br>
+      <h2 style="text-align: center" class="title is-4">
+        Qualitative comparison with optimization-based Gaussian methods</h2>
+      <video poster="" id="tree" controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/video_compare2.mp4"
+        type="video/mp4">
+      </video>
+      <br><br><br><br>
+      <h2 style="text-align: center" class="title is-4">
+        Architecture of Long-LRM++</h2>
+      <img src="static/images/fig2.png" width="960" height="425">
+      Long-LRM++ takes up to 64 input images at 950×540 resolution along with their camera poses, 
+      and processes them using a backbone composed of interleaved Mamba2 and Transformer blocks, 
+      similar to Long-LRM. Each image token predicts $K$ free-moving feature Gaussians 
+      (visualized with originating pixel's color). During rendering, we introduce a multi-space partitioning 
+      step that divides the Gaussians into multiple subsets, each rendered and decoded independently. 
+      The target-frame decoder incorporates translation-invariant local-attention blocks to improve robustness 
+      and rendering quality. Finally, the decoded feature maps are merged and passed through a linear layer to 
+      produce the novel-view color or depth rendering.
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{ziwen2025llrm2,
+  title={Long-LRM++: Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction},
+  author={Ziwen, Chen and Tan, Hao and Wang, Peng and Xu, Zexiang and Fuxin, Li},
+  booktitle={ArXiv},
+  year={2025}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
