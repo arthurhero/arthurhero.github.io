@@ -54,8 +54,8 @@
             <h1 class="title is-1 publication-title">Long-LRM++: Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
-		<!-- <span>High-resolution, wide-coverage, scene-level 3D Gaussian reconstruction in <b>1 second</b>.</span><br> -->
-    <!-- <span style="font-size:16px">Accepted by ICCV 2025.</span> -->
+		<span>High-resolution, wide-coverage, detail-preserving, scene-level 3D Gaussian reconstruction in <b>5 seconds</b>.</span><br>
+    <span style="font-size:16px">Accepted by CVPR 2026 Findings.</span>
                 <br><br>
               <span class="author-block"><a href="https://chenziwe.com/" target="_blank">Ziwen Chen</a><sup>1</sup>,</span>
               <span class="author-block"><a href="https://research.adobe.com/person/hao-tan/" target="_blank">Hao Tan</a><sup>1</sup>,</span>
@@ -74,7 +74,7 @@
                     <div class="publication-links">
                     <!-- Arxiv PDF link -->
                     <span class="link-block">
-                        <a href="" target="_blank"
+                        <a href="https://arxiv.org/pdf/2512.10267" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -146,22 +146,8 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
-      <!-- <video poster="" id="tree" autoplay muted loop height="100%">
-        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/videos/teaser2.mp4"
-        type="video/mp4">
-      </video>
-      <br><br><br><br>-->
-      <h2 style="text-align: center" class="title is-4">
-        Video comparison with Long-LRM</h2>
-      <video poster="" id="tree" controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/dl3dv_compare.mp4"
-        type="video/mp4">
-      </video>
-      <br><br>
-      <video poster="" id="tree" controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/scannet_compare.mp4"
+      <video poster="" id="tree" autoplay muted loop height="100%">
+        <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/short.mp4"
         type="video/mp4">
       </video>
       <br><br><br><br>
@@ -170,7 +156,7 @@
       <img src="static/images/fig2.png" width="960" height="425">
       Long-LRM++ takes up to 64 input images at 950×540 resolution along with their camera poses, 
       and processes them using a backbone composed of interleaved Mamba2 and Transformer blocks, 
-      similar to Long-LRM. Each image token predicts $K$ free-moving feature Gaussians 
+      similar to Long-LRM. Each image token predicts <i>K</i> free-moving feature Gaussians 
       (visualized with originating pixel's color). During rendering, we introduce a multi-space partitioning 
       step that divides the Gaussians into multiple subsets, each rendered and decoded independently. 
       The target-frame decoder incorporates translation-invariant local-attention blocks to improve robustness 
@@ -184,14 +170,69 @@
 
 
 
+<!-- Youtube video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-centered" style="text-align:center;">
+      <!-- Paper video. -->
+      <h2 class="title is-3">More reconstruction examples on DL3DV-140</h2>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/16.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block;margin: 30px;">
+        <video controls muted loop width="480" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/18.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+    
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+
+
+<!-- Scannet video -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-centered" style="text-align:center;">
+      <!-- Paper video. -->
+      <h2 class="title is-3">Simultaneous color and depth NVS on ScanNetv2</h2>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="720" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/scannet_compare.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+<!-- End Scannet video -->
+
+
+
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@inproceedings{ziwen2025llrm2,
+      <pre><code>@article{ziwen2025llrm2,
   title={Long-LRM++: Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction},
   author={Ziwen, Chen and Tan, Hao and Wang, Peng and Xu, Zexiang and Fuxin, Li},
-  booktitle={ArXiv},
+  journal={arXiv preprint arXiv:2512.10267},
   year={2025}
 }</code></pre>
     </div>
