@@ -135,29 +135,23 @@
 
 
 <!-- Teaser video-->
-<!-- <section class="hero teaser">
+<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
-      <video poster="" id="tree" controls autoplay muted loop height="100%">
+      <!-- <video poster="" id="tree" controls autoplay muted loop height="100%">
         <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/short2.mp4"
         type="video/mp4">
       </video>
       <br><br><br><br>
       <h2 style="text-align: center" class="title is-4">
-        Architecture of Long-LRM++</h2>
-      <img src="static/images/fig2.png" width="960" height="425">
-      Long-LRM++ takes up to 64 input images at 950×540 resolution along with their camera poses, 
-      and processes them using a backbone composed of interleaved Mamba2 and Transformer blocks, 
-      similar to Long-LRM. Each image token predicts <i>K</i> free-moving feature Gaussians 
-      (visualized with originating pixel's color). During rendering, we introduce a multi-space partitioning 
-      step that divides the Gaussians into multiple subsets, each rendered and decoded independently. 
-      The target-frame decoder incorporates translation-invariant local-attention blocks to improve robustness 
-      and rendering quality. Finally, the decoded feature maps are merged and passed through a linear layer to 
-      produce the novel-view color or depth rendering.
+        Architecture of Long-LRM++</h2> -->
+      <img src="static/images/fig3.png" width="960" height="560">
+      Parameter α controls the sharpness of individual Gaussian boundary and β controls the harshness of the softmax competition 
+      between Gaussians, realizing smooth transition from color blending to clear boundary.
     </div>
   </div>
-</section> -->
+</section>
 <!-- End teaser video -->
 
 
@@ -264,6 +258,114 @@
         <video controls muted loop width="200" height="200">
           <!-- Your video here -->
           <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/circle_smgs.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          Softmax-GS
+        </h2>
+      </div>
+
+
+
+
+      <div style="display:inline-block; margin: 5px;">
+        <img src="static/images/rect4.jpg" width="200" height="200">
+        <h2 style="text-align: center;">
+          Target
+        </h2> 
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/rect_3dgs.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          3D GS
+        </h2> 
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/rect_aonly.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          Sharp Edge Only
+        </h2> 
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/rect_smonly.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          Softmax Only
+        </h2>
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/rect_smgs.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          Softmax-GS
+        </h2>
+      </div>
+
+
+
+
+      <div style="display:inline-block; margin: 5px;">
+        <img src="static/images/oval42.jpg" width="200" height="200">
+        <h2 style="text-align: center;">
+          Target
+        </h2> 
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/oval_3dgs.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          3D GS
+        </h2> 
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/oval_aonly.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          Sharp Edge Only
+        </h2> 
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/oval_smonly.mp4"
+          type="video/mp4">
+        </video>
+        <h2 style="text-align: center;">
+          Softmax Only
+        </h2>
+      </div>
+
+      <div style="display:inline-block; margin: 5px;">
+        <video controls muted loop width="200" height="200">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/oval_smgs.mp4"
           type="video/mp4">
         </video>
         <h2 style="text-align: center;">
