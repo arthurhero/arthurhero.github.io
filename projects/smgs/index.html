@@ -51,15 +51,15 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Long-LRM++: Preserving Fine Details in Feed-Forward Wide-Coverage Reconstruction</h1>
+            <h1 class="title is-1 publication-title">Softmax-GS: Generalized Gaussians Learning When to Blend or Bound</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
-		<span>High-resolution, wide-coverage, detail-preserving, scene-level 3D Gaussian reconstruction in <b>5 seconds</b>.</span><br>
+		<!-- <span>High-resolution, wide-coverage, detail-preserving, scene-level 3D Gaussian reconstruction in <b>5 seconds</b>.</span><br> -->
     <span style="font-size:16px">Accepted by CVPR 2026 Findings.</span>
                 <br><br>
               <span class="author-block"><a href="https://chenziwe.com/" target="_blank">Ziwen Chen</a><sup>1</sup>,</span>
-              <span class="author-block"><a href="https://research.adobe.com/person/hao-tan/" target="_blank">Hao Tan</a><sup>1</sup>,</span>
               <span class="author-block"><a href="https://scholar.google.com/citations?user=KvXvmawAAAAJ&hl=en" target="_blank">Peng Wang</a><sup>2</sup>,</span>
+              <span class="author-block"><a href="https://research.adobe.com/person/hao-tan/" target="_blank">Hao Tan</a><sup>1</sup>,</span>
               <span class="author-block"><a href="https://zexiangxu.github.io/" target="_blank">Zexiang Xu</a><sup>3</sup>,</span>
               <span class="author-block"><a href="https://web.engr.oregonstate.edu/~lif/" target="_blank">Fuxin Li</a><sup>4</sup></span>
                   </div>
@@ -111,26 +111,19 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent advances in generalizable Gaussian splatting (GS) have enabled feed-forward reconstruction of scenes 
-            from tens of input views. Long-LRM notably scales this paradigm to 32 input images at 960×540 resolution, 
-            achieving 360° scene-level reconstruction in a single forward pass. However, directly predicting millions of 
-            Gaussian parameters at once remains highly error-sensitive: small inaccuracies in positions or other 
-            attributes lead to noticeable blurring, particularly in fine structures such as text. 
-            In parallel, implicit representation methods such as LVSM and LaCT have demonstrated significantly higher 
-            rendering fidelity by compressing scene information into model weights rather than explicit Gaussians, 
-            and decoding RGB frames using the full transformer or TTT backbone. 
-            However, this computationally intensive decompression process for every rendered frame makes real-time 
-            rendering infeasible.
-            These observations raise key questions: Is the deep, sequential "decompression" process necessary? 
-            Can we retain the benefits of implicit representations while enabling real-time performance?
-            We address these questions with Long-LRM++, a model that adopts a semi-explicit scene representation 
-            combined with a lightweight decoder. Long-LRM++ matches the rendering quality of LaCT on DL3DV while 
-            achieving real-time 14 FPS rendering on an A100 GPU, overcoming the speed limitations of prior 
-            implicit methods. Our design also scales to 64 input views at the 950×540 resolution, demonstrating 
-            strong generalization to increased input lengths. 
-            Additionally, Long-LRM++ delivers superior novel-view depth prediction on ScanNetv2 compared to direct 
-            depth rendering from Gaussians. Extensive ablation studies validate the effectiveness of each component 
-            in the proposed framework.
+            3D Gaussian Splatting (3D GS) is widely adopted for novel view synthesis due to its high training 
+            and rendering efficiency. However, its efficiency relies on the key assumption that Gaussians do not 
+            overlap in the 3D space, which leads to noticeable artifacts and view inconsistencies. 
+            In addition, the inherently diffuse boundaries of Gaussians hinder accurate reconstruction of sharp object edges.
+            We propose Softmax-GS, a unified solution that addresses both the view-inconsistency and the diffuse-boundary 
+            problem by enforcing a softmax-based competition in overlapping regions between two Gaussians. With learnable 
+            parameters controlling the strength of the competition, it enables a continuous spectrum from smooth color blending 
+            to crisp, well-defined boundaries. Our formulation explicitly preserves order invariance for any two overlapping 
+            Gaussians and ensures that the output transmittance remains unchanged irrespective of the extent of overlapping, 
+            preventing undesirable discontinuities in the rendered output.
+            Ablation experiments on simple geometries demonstrate the effectiveness of each component of Softmax-GS, 
+            and evaluations on real-world benchmarks show that it achieves state-of-the-art performance, improving both 
+            reconstruction quality and parameter efficiency.
           </p>
         </div>
       </div>
@@ -142,7 +135,7 @@
 
 
 <!-- Teaser video-->
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <br><br>
@@ -164,7 +157,7 @@
       produce the novel-view color or depth rendering.
     </div>
   </div>
-</section>
+</section> -->
 <!-- End teaser video -->
 
 
@@ -175,119 +168,33 @@
   <div class="hero-body">
     <div class="container is-centered" style="text-align:center;">
       <!-- Paper video. -->
-      <h2 class="title is-3">More reconstruction examples on DL3DV-140</h2>
+      <h2 class="title is-3">Rotation comparison</h2>
 
       <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
+        <video controls muted loop width="270" height="270">
           <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/16.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/18.mp4"
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/rotation/3dgs/3dgs_512.mp4"
           type="video/mp4">
         </video>
       </div>
 
       <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
+        <video controls muted loop width="270" height="270">
           <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/26.mp4"
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/rotation/stp/3dgs_512.mp4"
           type="video/mp4">
         </video>
       </div>
 
+
       <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
+        <video controls muted loop width="270" height="270">
           <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/27.mp4"
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/rotation/smgs/3dgs_512.mp4"
           type="video/mp4">
         </video>
       </div>
 
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/32.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/33.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/34.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/35.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/42.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/76.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-    
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/94.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/98.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/133.mp4"
-          type="video/mp4">
-        </video>
-      </div>
-
-      <div style="display:inline-block;margin: 30px;">
-        <video controls muted loop width="480" height="270">
-          <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/colmap/137.mp4"
-          type="video/mp4">
-        </video>
-      </div>
 
     </div>
   </div>
@@ -302,12 +209,36 @@
   <div class="hero-body">
     <div class="container is-centered" style="text-align:center;">
       <!-- Paper video. -->
-      <h2 class="title is-3">Simultaneous color and depth NVS on ScanNetv2</h2>
+      <h2 class="title is-3">Optimization Process of Simple Geometry</h2>
 
       <div style="display:inline-block; margin: 30px;">
-        <video controls muted loop width="720" height="270">
+        <video controls muted loop width="270" height="270">
           <!-- Your video here -->
-          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/llrm2/videos/scannet_compare.mp4"
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/circle_3dgs.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="270" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/circle_aonly.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="270" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/circle_smonly.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+
+      <div style="display:inline-block; margin: 30px;">
+        <video controls muted loop width="270" height="270">
+          <!-- Your video here -->
+          <source src="https://huggingface.co/arthurhero/llrm_stuff/resolve/main/smgs/videos/simple/circle_smgs.mp4"
           type="video/mp4">
         </video>
       </div>
@@ -321,7 +252,7 @@
 
 
 <!--BibTex citation -->
-  <section class="section" id="BibTeX">
+  <!-- <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>@article{ziwen2025llrm2,
@@ -331,7 +262,7 @@
   year={2025}
 }</code></pre>
     </div>
-</section>
+</section> -->
 <!--End BibTex citation -->
 
 
